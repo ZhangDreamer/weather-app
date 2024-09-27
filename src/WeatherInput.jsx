@@ -1,5 +1,6 @@
 import WeatherDisplay from './WeatherDisplay.jsx';
 import {useState, useEffect} from 'react';
+import fetchWeather from './backend/fetchWeather.js';
 
 function WeatherInput(){
 
@@ -10,19 +11,15 @@ function WeatherInput(){
   useEffect(() => {
 
     if(isSubmitted){
-      const promise = fetch(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${query}`).then((res) => {
-        if(res.ok){
-          console.log('Success');
-          return res.json();
-        } else{
-          console.log("Not successful");
-        }
-      }).then((data) => {
-        console.log(data);
+      fetchWeather(query).then((data) => {
         setWeatherData(data);
-      }).catch(error => console.log(error));
-    
+      });
     }
+
+    return () => {
+      setIsSubmitted(false);
+      setWeatherData(null);
+    };
 
   }, [isSubmitted])
 
@@ -37,7 +34,7 @@ function WeatherInput(){
 
   return(
     <div className="weather-container">
-      {isSubmitted ? <WeatherDisplay data={weatherData} isSubmitted={isSubmitted}/> : null}
+      {weatherData ? <WeatherDisplay data={weatherData} isSubmitted={isSubmitted}/> : null}
       <input type="text" placeholder="Enter a city..." value={query} onChange={handleInputChange}/>
       <button className="submit-button" onClick={submitQuery}>Submit</button>
     </div>
