@@ -1,12 +1,11 @@
 
-function WeatherDisplay(){
+function WeatherDisplay(props){
 
-  const key = '49127ce2bfb64f3c9a435035242709';
-
+  const weatherData = props.data;
 
   return(
-    <div>
-
+    <div className="weather-display" id='weather-display'>
+      <h3></h3>
     </div>
   )
 }

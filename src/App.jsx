@@ -1,10 +1,10 @@
-import WeatherDisplay from './WeatherDisplay.jsx';
+import WeatherInput from './WeatherInput.jsx';
 
 function App() {
   
   return (
     <>
-    <WeatherDisplay/>
+    <WeatherInput/>
     </>
   )
 }
