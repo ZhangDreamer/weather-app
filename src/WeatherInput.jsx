@@ -7,11 +7,14 @@ function WeatherInput(){
   const [query, setQuery] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [weatherData, setWeatherData] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
 
     if(isSubmitted){
+      setLoading(true);
       fetchWeather(query).then((data) => {
+        setLoading(false);
         setWeatherData(data);
       });
     }
@@ -34,6 +37,7 @@ function WeatherInput(){
 
   return(
     <div className="weather-container">
+      {loading && <p>Loading weather data...</p>}
       {weatherData ? <WeatherDisplay data={weatherData} isSubmitted={isSubmitted}/> : null}
       <input type="text" placeholder="Enter a city..." value={query} onChange={handleInputChange}/>
       <button className="submit-button" onClick={submitQuery}>Submit</button>
