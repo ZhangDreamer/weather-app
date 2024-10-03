@@ -11,7 +11,7 @@ A simple and fast weather application built with React and Vite that fetches wea
 
 ## Screenshot
 
-![Weather App Screenshot](./screenshot.png)
+![Weather App Screenshot](https://i.imgur.com/2n1DJxv.png)
 
 ## Technologies Used
 
